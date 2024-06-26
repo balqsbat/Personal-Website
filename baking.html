@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baking Recipe</title>
+    <style>
+        body {
+            background-color: #ffe4e1; 
+            font-family: 'Garamond', sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            position: relative;
+        }
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        .navbar {
+            background-color: rgba(255, 145, 164, 0.9);
+            padding: 10px;
+            border-radius: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.1em;
+            position: fixed;
+            top: 10px;
+            left: 0;
+            right: 0;
+            margin-left: auto;
+            margin-right: auto;
+            width: 90%;
+            z-index: 1000;
+        }
+        .navbar .logo {
+            margin-right: auto; 
+            display: block;
+            align-items: center;
+        }
+        .navbar .logo img {
+            height: 50px; 
+            margin-right: -10px; 
+        }
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            padding: 8px 15px;
+            border-radius: 20px;
+            background-color: rgba(255, 182, 193, 0.8);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .navbar a:hover {
+            background-color: rgba(255, 228, 233, 0.8);
+            transform: translateY(-2px);
+        }
+
+        .recipe-header {
+            padding: 50px 20px;
+            background: linear-gradient(145deg, #ffb6c1, #ff69b4); 
+            color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 80px;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        .recipe-header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        .recipe-content {
+            background-color: #ffb6c1; 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: left;
+        }
+        .recipe-image {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+        }
+        .recipe-ingredients, .recipe-steps {
+            margin: 20px 0;
+        }
+        .recipe-ingredients ul, .recipe-steps ol {
+            padding-left: 20px;
+            line-height: 1.6;
+        }
+        .recipe-tips {
+            margin: 20px 0;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 30px 0;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            bottom: 0;
+        }
+        .footer-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .footer-content p {
+            margin: 0;
+            padding: 10px;
+        }
+        .social-links {
+            margin-top: 20px;
+        }
+        .social-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.8em;
+            margin: 0 15px;
+            transition: color 0.3s ease;
+        }
+        .social-links a:hover {
+            color: #ff69b4;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: #ffa7c4;
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #ffd7e2;
+            transform: translateY(-2px);
+        }
+
+        .background-graphics {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            background: linear-gradient(45deg, rgba(255, 105, 180, 0.6), rgba(255, 182, 193, 0.6)), 
+                        radial-gradient(circle, rgba(255, 218, 185, 0.6), rgba(255, 192, 203, 0.6) 70%);
+            background-blend-mode: overlay;
+        }
+        .circle {
+            width: 20px;
+            height: 20px;
+            background-color: rgba(255, 20, 147, 0.8);
+            border-radius: 50%;
+            position: absolute;
+            animation: float 6s ease-in-out infinite;
+        }
+        .circle.one {
+            top: 15%;
+            left: 10%;
+            animation-duration: 7s;
+        }
+        .circle.two {
+            top: 60%;
+            right: 5%;
+            animation-duration: 8s;
+        }
+        .circle.three {
+            top: 40%;
+            left: 40%;
+            animation-duration: 5s;
+        }
+        .decorative-element {
+            width: 60px;
+            height: 60px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            position: absolute;
+            animation: float 6s ease-in-out infinite;
+        }
+        .decorative-star {
+            background-image: url('https://img.icons8.com/fluent/48/000000/star.png');
+            animation-duration: 7s;
+        }
+        .decorative-heart {
+            background-image: url('https://img.icons8.com/fluent/48/000000/heart.png');
+            animation-duration: 9s;
+        }
+        .decorative-bubble {
+            background-image: url('https://img.icons8.com/fluent/48/000000/thought-bubble.png');
+            animation-duration: 5s;
+        }
+        .star-one {
+            top: 5%;
+            left: 15%;
+        }
+        .star-two {
+            top: 60%;
+            right: 20%;
+        }
+        .heart-one {
+            top: 35%;
+            left: 70%;
+        }
+        .bubble-one {
+            top: 80%;
+            left: 10%;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="navbar">
+            <div class="logo">
+                <a href="index.html"><img src="images/stwbbry.png" alt="Logo" title="Back to Home"></a>
+            </div>
+            <a href="index.html">Home</a>
+            <a href="person.html">Personal</a>
+            <a href="fam.html">Family</a>
+            <a href="gall.html">Gallery</a>
+            <a href="hobb.html">Hobby</a>
+        </div>
+
+        <div class="recipe-header">
+            <h1>Chocolate Chip Cookies</h1>
+        </div>
+        
+        <div class="recipe-content">
+            <video controls class="recipe-video">
+                <source src="images/cookiesv.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+
+            <strong><p class="video-credit">Video credit: The Cooking Foodie on YouTube</p></strong>
+            
+            <div class="recipe-ingredients">
+                <h2>Ingredients</h2>
+                <ul>
+                    <li>2 1/4 cups all-purpose flour</li>
+                    <li>1/2 teaspoon baking soda</li>
+                    <li>1 cup unsalted butter, room temperature</li>
+                    <li>1/2 cup granulated sugar</li>
+                    <li>1 cup packed light-brown sugar</li>
+                    <li>1 teaspoon salt</li>
+                    <li>2 teaspoons pure vanilla extract</li>
+                    <li>2 large eggs</li>
+                    <li>2 cups semisweet and/or milk chocolate chips</li>
+                </ul>
+            </div>
+
+
+            <div class="recipe-steps">
+                <h2>Steps</h2>
+                <ol>
+                    <li>Preheat oven to 350°F (175°C). Line baking sheets with parchment paper.</li>
+                    <li>In a small bowl, whisk together the flour and baking soda; set aside.</li>
+                    <li>In a large bowl, beat the butter and sugars with a mixer on medium speed until light and fluffy.</li>
+                    <li>Add the salt, vanilla, and eggs, and beat until well mixed.</li>
+                    <li>Gradually add the flour mixture, and mix until just combined.</li>
+                    <li>Fold in the chocolate chips.</li>
+                    <li>Drop heaping tablespoon-size balls of dough about 2 inches apart on the baking sheets.</li>
+                    <li>Bake until cookies are golden around the edges but still soft in the center, 8 to 10 minutes.</li>
+                    <li>Let cookies cool on the baking sheets for 1-2 minutes before transferring them to a wire rack to cool completely.</li>
+                </ol>
+            </div>
+
+            <div class="recipe-tips">
+                <h2>Tips</h2>
+                <ul>
+                    <li>For chewier cookies, chill the dough for at least 30 minutes before baking.</li>
+                    <li>Add a pinch of cinnamon for a unique twist.</li>
+                    <li>Use a mix of different chocolate chips for more variety in flavor.</li>
+                </ul>
+            </div>
+        </div>
+    
+            <div class="recipe-header">
+                <h1>Lemon Drizzle Cake</h1> 
+            </div>
+            
+            <div class="recipe-content">
+                <img src="images/lemon.jpg" alt="Lemon Drizzle Cake" class="recipe-image"> 
+                <div class="recipe-ingredients">
+                    <h2>Ingredients</h2>
+                    <ul>
+                        <li>225g unsalted butter, softened</li>
+                        <li>225g caster sugar</li>
+                        <li>4 large eggs</li>
+                        <li>225g self-raising flour</li>
+                        <li>Zest of 1 lemon</li>
+                        <li>Juice of 1 lemon</li>
+                        <li>100g icing sugar</li>
+                        <li>2 tablespoons lemon juice (for drizzle)</li>
+                    </ul>
+                </div>
+    
+                <div class="recipe-steps">
+                    <h2>Steps</h2>
+                    <ol>
+                        <li>Preheat the oven to 180°C (350°F). Grease and line a loaf tin.</li>
+                        <li>Cream the butter and sugar together until light and fluffy.</li>
+                        <li>Beat in the eggs, one at a time, until fully incorporated.</li>
+                        <li>Fold in the flour and lemon zest until well combined.</li>
+                        <li>Spoon the mixture into the prepared loaf tin and level the surface.</li>
+                        <li>Bake for 40-45 minutes or until a skewer inserted into the center comes out clean.</li>
+                        <li>Mix the icing sugar and lemon juice to make the drizzle.</li>
+                        <li>While the cake is still warm, prick it all over with a fork and pour over the drizzle.</li>
+                        <li>Let the cake cool completely in the tin before removing and serving.</li>
+                    </ol>
+                </div>
+    
+                <div class="recipe-tips">
+                    <h2>Tips</h2>
+                    <ul>
+                        <li>Add some poppy seeds to the batter for extra texture.</li>
+                        <li>Serve with a dollop of whipped cream for an indulgent treat.</li>
+                        <li>Store in an airtight container to keep the cake moist.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="background-graphics">
+        <div class="circle one"></div>
+        <div class="circle two"></div>
+        <div class="circle three"></div>
+        <div class="decorative-element star-one decorative-star"></div>
+        <div class="decorative-element star-two decorative-star"></div>
+        <div class="decorative-element heart-one decorative-heart"></div>
+        <div class="decorative-element bubble-one decorative-bubble"></div>
+    </div>
+</body>
+</html>

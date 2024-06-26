@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me</title>
+    <style>
+        body {
+            background-color: #fff0f5; 
+            font-family: 'Garamond', sans-serif;
+            color: #555;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        .navbar {
+            background-color: rgba(255, 145, 164, 0.9);
+            padding: 10px;
+            border-radius: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.1em;
+            position: fixed;
+            top: 10px;
+            left: 0;
+            right: 0;
+            margin-left: auto;
+            margin-right: auto;
+            width: 90%;
+            z-index: 1000;
+        }
+        .navbar .logo {
+            margin-right: auto; /* Position logo to the left */
+            display: block;
+            align-items: center;
+        }
+        .navbar .logo img {
+            height: 50px; /* Adjust as needed */
+            margin-right: -10px; /* Space between logo and links */
+        }
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            padding: 8px 15px;
+            border-radius: 20px;
+            background-color: rgba(255, 182, 193, 0.8);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .navbar a:hover {
+            background-color: rgba(255, 228, 233, 0.8);
+            transform: translateY(-2px);
+        }
+
+        .header {
+            background-color: rgba(255, 193, 212, 0.8);
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            margin-top: 80px;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        .header h1 {
+            color: #fff;
+            margin: 0;
+            font-size: 2.8em;
+            animation: fadeIn 2s ease;
+        }
+        .profile-picture {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-top: 20px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .profile-picture:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .content {
+            background-color: rgba(255, 222, 233, 0.8);
+            padding: 30px;
+            margin-top: 30px;
+            border-radius: 20px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+            text-align: left;
+            font-size: 1.2em;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .content h2 {
+            color: #ff8ab9;
+            margin-bottom: 15px;
+        }
+        .content p {
+            font-size: 1.2em;
+            line-height: 1.8;
+            margin: 0 20px;
+        }
+        .content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        .gallery-item {
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            width: 220px;
+            height: 100%;
+            position: relative;
+            z-index: 1;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            border-bottom: 1px solid #ffb6c1;
+        }
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+        .gallery-caption {
+            padding: 10px;
+            background-color: #ffb6c1;
+            color: #333;
+            font-size: 1em;
+        }
+
+
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: #ffa7c4;
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #ffd7e2;
+            transform: translateY(-2px);
+        }
+
+        .footer {
+            margin-top: 30px;
+            padding: 15px;
+            background-color: rgba(255, 138, 185, 0.8);
+            border-radius: 20px;
+            color: #fff;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(-10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+
+        .background-graphics {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            background: linear-gradient(45deg, rgba(255, 105, 180, 0.6), rgba(255, 182, 193, 0.6)), 
+                        radial-gradient(circle, rgba(255, 218, 185, 0.6), rgba(255, 192, 203, 0.6) 70%);
+            background-blend-mode: overlay;
+        }
+        .circle {
+            width: 20px;
+            height: 20px;
+            background-color: rgba(255, 20, 147, 0.8);
+            border-radius: 50%;
+            position: absolute;
+            animation: float 6s ease-in-out infinite;
+        }
+        .circle.one {
+            top: 15%;
+            left: 10%;
+            animation-duration: 7s;
+        }
+        .circle.two {
+            top: 60%;
+            right: 5%;
+            animation-duration: 8s;
+        }
+        .circle.three {
+            top: 40%;
+            left: 40%;
+            animation-duration: 5s;
+        }
+
+        .decorative-element {
+            width: 60px;
+            height: 60px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            position: absolute;
+            animation: float 6s ease-in-out infinite;
+        }
+        .decorative-star {
+            background-image: url('https://img.icons8.com/fluent/48/000000/star.png');
+            animation-duration: 7s;
+        }
+        .decorative-heart {
+            background-image: url('https://img.icons8.com/fluent/48/000000/heart.png');
+            animation-duration: 9s;
+        }
+        .decorative-bubble {
+            background-image: url('https://img.icons8.com/fluent/48/000000/thought-bubble.png');
+            animation-duration: 5s;
+        }
+        .star-one {
+            top: 5%;
+            left: 15%;
+        }
+        .star-two {
+            top: 60%;
+            right: 20%;
+        }
+        .heart-one {
+            top: 35%;
+            left: 70%;
+        }
+        .bubble-one {
+            top: 80%;
+            left: 10%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="navbar">
+            <div class="logo">
+                <a href="index.html"><img src="images/stwbbry.png" alt="Logo" title="Back to Home"></a>
+            </div>
+            <a href="index.html">Home</a>
+            <a href="person.html">Personal</a>
+            <a href="fam.html">Family</a>
+            <a href="gall.html">Gallery</a>
+            <a href="hobb.html">Hobby</a>
+        </div>
+        <div class="header">
+            <h1>About Me</h1>
+            <img src="images/pp.png" alt="Profile Picture" class="profile-picture">
+        </div>
+        <div class="content">
+            <h2>About Me</h2>
+            <p><strong>Full Name:</strong> Nur Balqis Batrisyia binti Syamsul Mu'arif</p>
+            <p><strong>Nickname:</strong> Bal, Babal, Nbb</p>
+            <p><strong>Date of Birth:</strong> 3 December</p>
+            <p><strong>Nationality:</strong> Malaysian</p>
+            <p><strong>Marital Status:</strong> Single</p>
+            <p><strong>Gender:</strong> Female</p>
+            <p><strong>Languages Known:</strong> Malay, English, Mandarin</p>
+            <a href="https://www.youtube.com/@stwbbry" tit class="btn" target="_blank">My Youtube!</a>
+        </div>
+        <div class="header">
+            <h1>Education</h1>
+            <p>My study journal since preschool</p>
+        </div>
+        <div class="gallery">
+            <div class="gallery-item">
+                <a href="https://www.facebook.com/sklenggong/?locale=ms_MY" target="_blank"><img src="images/sk.jpeg" alt="Description 1"></a>
+                <div class="gallery-caption">
+                    <h3>Preschool</h3>
+                    <p>SK Lenggong</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <a href="https://www.instagram.com/almarbawi/?hl=en" target="_blank"><img src="images/sks.jpeg" alt="Description 2"></a>
+                <div class="gallery-caption">
+                    <h3>Elementary School</h3>
+                    <p>SK Syeikh Mohd Idris Al-Marbawi</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <a href="https://www.facebook.com/semarakjea5023/?locale=ms_MY" target="_blank"><img src="images/smktp.jpg" alt="Description 3"></a>
+                <div class="gallery-caption">
+                    <h3>Secondary School</h3>
+                    <p>SMK Tun Perak</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <a href="https://lenggong.mrsm.edu.my/" target="_blank"><img src="images/mrsm.jpg" alt="Description 4"></a>
+                <div class="gallery-caption">
+                    <h3>Secondary School</h3>
+                    <p>MRSM Lenggong</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <a href="https://www.facebook.com/cskk1897/" target="_blank"><img src="images/smkc.jpg" alt="Description 4"></a>
+                <div class="gallery-caption">
+                    <h3>Pre-University</h3>
+                    <p>SMK Clifford</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <a href="https://kedah.uitm.edu.my/" target="_blank"><img src="images/Uitm.png" alt="Description 4"></a>
+                <div class="gallery-caption">
+                    <h3>University</h3>
+                    <p>UiTM Kedah</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content">
+            <h2>Contact Me</h2>
+            <p>
+                Feel free to reach out to me via email or connect with me on Instagram at 
+            </p>
+            <center><a href="mailto:balqisarif95@gmail.com" class="btn" target="_blank">email</a>
+            <a href="https://www.instagram.com/balqsbat?igsh=ZDIzbm9tenF0Zzhk" class="btn" target="_blank">instagram</a></center>
+        </div>
+        <div class="footer">
+            <p>&copy; 2024 [stwbbry]. All rights reserved.</p>
+        </div>
+    </div>
+
+    <div class="background-graphics">
+        <div class="circle one"></div>
+        <div class="circle two"></div>
+        <div class="circle three"></div>
+        <div class="decorative-element star-one decorative-star"></div>
+        <div class="decorative-element star-two decorative-star"></div>
+        <div class="decorative-element heart-one decorative-heart"></div>
+        <div class="decorative-element bubble-one decorative-bubble"></div>
+    </div>
+</body>
+</html>

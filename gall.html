@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery</title>
+    <style>
+        body {
+            background-color: #ffe4e1;
+            font-family: 'Garamond', sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            position: relative;
+        }
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .navbar {
+            background-color: rgba(255, 145, 164, 0.9);
+            padding: 10px;
+            border-radius: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.1em;
+            position: fixed;
+            top: 10px;
+            left: 0;
+            right: 0;
+            margin-left: auto;
+            margin-right: auto;
+            width: 90%;
+            z-index: 1000;
+        }
+        .navbar .logo {
+            margin-right: auto; /* Position logo to the left */
+            display: block;
+            align-items: center;
+        }
+        .navbar .logo img {
+            height: 50px; /* Adjust as needed */
+            margin-right: -10px; /* Space between logo and links */
+        }
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            padding: 8px 15px;
+            border-radius: 20px;
+            background-color: rgba(255, 182, 193, 0.8);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .navbar a:hover {
+            background-color: rgba(255, 228, 233, 0.8);
+            transform: translateY(-2px);
+        }
+        .header {
+            padding: 30px 20px;
+            background: linear-gradient(145deg, #ffb6c1, #ff69b4);
+            color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 80px;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        .gallery-item {
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            width: 220px;
+            height: 100%;
+            position: relative;
+            z-index: 1;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            border-bottom: 1px solid #ffb6c1;
+        }
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+        .gallery-caption {
+            padding: 10px;
+            background-color: #ffb6c1;
+            color: #333;
+            font-size: 1em;
+        }
+
+        .background-graphics {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            background: linear-gradient(45deg, rgba(255, 105, 180, 0.6), rgba(255, 182, 193, 0.6)), 
+                        radial-gradient(circle, rgba(255, 218, 185, 0.6), rgba(255, 192, 203, 0.6) 70%);
+            background-blend-mode: overlay;
+        }
+        .circle {
+            width: 20px;
+            height: 20px;
+            background-color: rgba(255, 20, 147, 0.8);
+            border-radius: 50%;
+            position: absolute;
+            animation: float 6s ease-in-out infinite;
+        }
+        .circle.one {
+            top: 15%;
+            left: 10%;
+            animation-duration: 7s;
+        }
+        .circle.two {
+            top: 60%;
+            right: 5%;
+            animation-duration: 8s;
+        }
+        .circle.three {
+            top: 40%;
+            left: 40%;
+            animation-duration: 5s;
+        }
+        .decorative-element {
+            width: 60px;
+            height: 60px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            position: absolute;
+            animation: float 6s ease-in-out infinite;
+        }
+        .decorative-star {
+            background-image: url('https://img.icons8.com/fluent/48/000000/star.png');
+            animation-duration: 7s;
+        }
+        .decorative-heart {
+            background-image: url('https://img.icons8.com/fluent/48/000000/heart.png');
+            animation-duration: 9s;
+        }
+        .decorative-bubble {
+            background-image: url('https://img.icons8.com/fluent/48/000000/thought-bubble.png');
+            animation-duration: 5s;
+        }
+        .star-one {
+            top: 5%;
+            left: 15%;
+        }
+        .star-two {
+            top: 60%;
+            right: 20%;
+        }
+        .heart-one {
+            top: 35%;
+            left: 70%;
+        }
+        .bubble-one {
+            top: 80%;
+            left: 10%;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="navbar">
+            <div class="logo">
+                <a href="index.html"><img src="images/stwbbry.png" alt="Logo" title="Back to Home"></a>
+            </div>
+            <a href="index.html">Home</a>
+            <a href="person.html">Personal</a>
+            <a href="fam.html">Family</a>
+            <a href="gall.html">Gallery</a>
+            <a href="hobb.html">Hobby</a>
+        </div>
+        <div class="header">
+            <h1>My Gallery</h1>
+            <p>A collection of my favorite moments and creations</p>
+        </div>
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="images/pic1.jpg" alt="Description 1">
+            </div>
+            <div class="gallery-item">
+                <img src="images/pic2.jpg" alt="Description 2">
+            </div>
+            <div class="gallery-item">
+                <img src="images/pic3.jpg" alt="Description 3">
+            </div>
+            <div class="gallery-item">
+                <img src="images/fam24.jpg" alt="Description 4">
+            </div>
+            <div class="gallery-item">
+                <img src="images/fam25.jpg" alt="Description 5">
+            </div>
+            <div class="gallery-item">
+                <img src="images/fam19.jpg" alt="Description 6">
+            </div>
+            <div class="gallery-item">
+                <img src="images/fam5.jpg" alt="Description 7">
+            </div>
+            <div class="gallery-item">
+                <img src="images/fam6.jpg" alt="Description 8">
+            </div>
+            <div class="gallery-item">
+                <img src="images/fam7.jpg" alt="Description 9">
+            </div>
+            <div class="gallery-item">
+                <img src="images/selfie4.png" alt="Description 10">
+            </div>
+            <div class="gallery-item">
+                <img src="images/selfie5.png" alt="Description 11">
+            </div>
+            <div class="gallery-item">
+                <img src="images/selfie6.png" alt="Description 12">
+            </div>
+            <div class="gallery-item">
+                <img src="images/selfie7.png" alt="Description 13">
+            </div>
+            <div class="gallery-item">
+                <img src="images/selfie8.png" alt="Description 14">
+            </div>
+            <div class="gallery-item">
+                <img src="images/selfie9.png" alt="Description 15">
+            </div>
+            <div class="gallery-item">
+                <img src="images/selfie10.png" alt="Description 19">
+            </div>
+            <div class="gallery-item">
+                <img src="images/fam2.jpg" alt="Description 16">
+            </div>
+            <div class="gallery-item">
+                <img src="images/fam3.jpg" alt="Description 16">
+            </div>
+            <div class="gallery-item">
+                <img src="images/fam2.jpg" alt="Description 17">
+            </div>
+            <div class="gallery-item">
+                <img src="images/fam3.jpg" alt="Description 18">
+            </div>
+            <div class="gallery-item">
+                <img src="images/fam.jpg" alt="Description 20">
+            </div>
+            <div class="gallery-item">
+                <img src="images/fam4.jpg" alt="Description 21">
+            </div>
+            <div class="gallery-item">
+                <img src="images/fam4.jpg" alt="Description 22">
+            </div>
+            <div class="gallery-item">
+                <img src="images/friend.jpg" alt="Description 23">
+            </div>
+            <div class="gallery-item">
+                <img src="images/friend2.jpg" alt="Description 24">
+            </div>
+            <div class="gallery-item">
+                <img src="images/friend3.jpg" alt="Description 25">
+            </div>
+            <div class="gallery-item">
+                <img src="images/f1.jpg" alt="Description 26">
+            </div>
+            <div class="gallery-item">
+                <img src="images/f2.jpg" alt="Description 27">
+            </div>
+            <div class="gallery-item">
+                <img src="images/f3.jpg" alt="Description 28">
+            </div>
+            <div class="gallery-item">
+                <img src="images/f4.jpg" alt="Description 29">
+            </div>
+            <div class="gallery-item">
+                <img src="images/f5.jpg" alt="Description 30">
+            </div>
+            <div class="gallery-item">
+                <img src="images/f6.jpg" alt="Description 31">
+            </div>
+            <div class="gallery-item">
+                <img src="images/f8.jpg" alt="Description 33">
+            </div>
+            <div class="gallery-item">
+                <img src="images/f9.jpg" alt="Description 34">
+            </div>
+            <div class="gallery-item">
+                <img src="images/f10.jpg" alt="Description 36">
+            </div>
+            <div class="gallery-item">
+                <img src="images/f11.jpg" alt="Description 36">
+            </div>
+            <div class="gallery-item">
+                <img src="images/f12.jpg" alt="Description 37">
+            </div>
+            <div class="gallery-item">
+                <img src="images/f13.jpg" alt="Description 38">
+            </div>
+            <div class="gallery-item">
+                <img src="images/f15.jpg" alt="Description 39">
+            </div>
+            <div class="gallery-item">
+                <img src="images/f17.jpg" alt="Description 41">
+            </div>
+            <div class="gallery-item">
+                <img src="images/f16.jpg" alt="Description 40">
+            </div>
+            <div class="gallery-item">
+                <img src="images/f18.jpg" alt="Description 42">
+            </div>
+            <div class="gallery-item">
+                <img src="images/f19.jpg" alt="Description 41">
+            </div>
+        </div>
+    </div>
+
+    <div class="background-graphics">
+        <div class="circle one"></div>
+        <div class="circle two"></div>
+        <div class="circle three"></div>
+        <div class="decorative-element star-one decorative-star"></div>
+        <div class="decorative-element star-two decorative-star"></div>
+        <div class="decorative-element heart-one decorative-heart"></div>
+        <div class="decorative-element bubble-one decorative-bubble"></div>
+    </div>
+</body>
+</html>

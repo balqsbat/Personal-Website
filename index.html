@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - [Stwbbry]</title>
+    <style>
+        body {
+            background-color: #ffe4e1;
+            font-family: 'Garamond', sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            position: relative;
+        }
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .navbar {
+            background-color: rgba(255, 145, 164, 0.9);
+            padding: 10px;
+            border-radius: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.1em;
+            position: fixed;
+            top: 10px;
+            left: 0;
+            right: 0;
+            margin-left: auto;
+            margin-right: auto;
+            width: 90%;
+            z-index: 1000;
+        }
+        .navbar .logo {
+            margin-right: auto; /* Position logo to the left */
+            display: block;
+            align-items: center;
+        }
+        .navbar .logo img {
+            height: 50px; /* Adjust as needed */
+            margin-right: -10px; /* Space between logo and links */
+        }
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            padding: 8px 15px;
+            border-radius: 20px;
+            background-color: rgba(255, 182, 193, 0.8);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .navbar a:hover {
+            background-color: rgba(255, 228, 233, 0.8);
+            transform: translateY(-2px);
+        }
+        /* Header styles */
+        .header {
+            padding: 50px 20px;
+            background: linear-gradient(145deg, #ffb6c1, #ff69b4);
+            color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            margin-top: 80px;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 3em;
+        }
+        .header:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Introduction styles */
+        .intro {
+            padding: 20px;
+            background-color: #ffb6c1;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            position: relative;
+            z-index: 1;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .intro h2 {
+            color: #ff69b4;
+            margin-bottom: 10px;
+        }
+        .intro p {
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+        .intro:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Call to action button */
+        .cta {
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #ff69b4;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+        .cta:hover {
+            background-color: #ff1493; /* Lighter pink on hover */
+        }
+
+        .footer {
+            margin-top: 30px;
+            padding: 15px;
+            background-color: rgba(255, 138, 185, 0.8);
+            border-radius: 20px;
+            color: #fff;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+        /* Decorative background */
+        .background-graphics {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            background: linear-gradient(45deg, rgba(255, 105, 180, 0.6), rgba(255, 182, 193, 0.6)), 
+                        radial-gradient(circle, rgba(255, 218, 185, 0.6), rgba(255, 192, 203, 0.6) 70%);
+            background-blend-mode: overlay;
+        }
+        .circle {
+            width: 20px;
+            height: 20px;
+            background-color: rgba(255, 20, 147, 0.8);
+            position: absolute;
+            animation: float 6s ease-in-out infinite;
+        }
+        .circle.one {
+            top: 15%;
+            left: 10%;
+            animation-duration: 7s;
+        }
+        .circle.two {
+            top: 60%;
+            right: 5%;
+            animation-duration: 8s;
+        }
+        .circle.three {
+            top: 40%;
+            left: 40%;
+            animation-duration: 5s;
+        }
+        .decorative-element {
+            width: 60px;
+            height: 60px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            position: absolute;
+            animation: float 6s ease-in-out infinite;
+        }
+        .decorative-star {
+            background-image: url('https://img.icons8.com/fluent/48/000000/star.png');
+            animation-duration: 7s;
+        }
+        .decorative-heart {
+            background-image: url('https://img.icons8.com/fluent/48/000000/heart.png');
+            animation-duration: 9s;
+        }
+        .decorative-bubble {
+            background-image: url('https://img.icons8.com/fluent/48/000000/thought-bubble.png');
+            animation-duration: 5s;
+        }
+        .star-one {
+            top: 5%;
+            left: 15%;
+        }
+        .star-two {
+            top: 60%;
+            right: 20%;
+        }
+        .heart-one {
+            top: 35%;
+            left: 70%;
+        }
+        .bubble-one {
+            top: 80%;
+            left: 10%;
+        }
+        /* Animations */
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="navbar">
+            <div class="logo">
+                <a href="index.html"><img src="images/stwbbry.png" alt="Logo" title="Back to Home"></a>
+            </div>
+            <a href="index.html">Home</a>
+            <a href="person.html">Personal</a>
+            <a href="fam.html">Family</a>
+            <a href="gall.html">Gallery</a>
+            <a href="hobb.html">Hobby</a>
+        </div>
+        <div class="header">
+            <h1>Hi, welcome to my website!</h1> 
+            <p>
+            <h1>Stwbbry</h1></p>
+        </div>
+        <div class="footer">
+            <p>&copy; 2024 [stwbbry]. All rights reserved.</p>
+        </div>
+    </div>
+
+    <div class="background-graphics">
+        <div class="circle one"></div>
+        <div class="circle two"></div>
+        <div class="circle three"></div>
+        <div class="decorative-element star-one decorative-star"></div>
+        <div class="decorative-element star-two decorative-star"></div>
+        <div class="decorative-element heart-one decorative-heart"></div>
+        <div class="decorative-element bubble-one decorative-bubble"></div>
+    </div>
+</body>
+</html>
